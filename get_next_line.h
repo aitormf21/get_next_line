@@ -6,7 +6,7 @@
 /*   By: aitor <aitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:40:24 by aitor             #+#    #+#             */
-/*   Updated: 2025/01/07 15:08:12 by aitor            ###   ########.fr       */
+/*   Updated: 2025/01/08 13:24:55 by aitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 size_t	ft_strlen(char *s);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(char *s1);
-char	*ft_strchr(char *s, int c);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_strchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);
 char	*ft_free(char **str);
 #endif
