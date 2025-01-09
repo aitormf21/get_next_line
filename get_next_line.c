@@ -6,7 +6,7 @@
 /*   By: aitor <aitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:02:21 by aitor             #+#    #+#             */
-/*   Updated: 2025/01/08 13:30:17 by aitor            ###   ########.fr       */
+/*   Updated: 2025/01/09 14:05:29 by aitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ char	*new_line(char *storage)
 	int		len;
 
 	ptr = ft_strchr(storage, '\n');
-	len = (ptr - storage) + 1;
+	if (!ptr)
+		len = ft_strlen(storage);
+	else
+		len = (ptr - storage) + 1;
 	line = ft_substr(storage, 0, len);
 	if (!line)
 		return (NULL);
@@ -28,14 +31,32 @@ char	*new_line(char *storage)
 
 char	*ft_clean_storage(char *storage)
 {
-	char
+	char	*new_storage;
+	char	*ptr;
+	int		len;
+
+	ptr = ft_strchr(storage, '\n');
+	if (!ptr)
+	{
+		new_storage = NULL;
+		return (ft_free(&storage));
+	}
+	else
+		len = (ptr - storage) + 1;
+	if (!storage[len])
+		return(ft_free(&storage));
+	new_storage = ft_substr(storage, len, ft_strlen(storage) - len);
+	ft_free(&storage);
+	if (!new_storage)
+		return (NULL);
+	return (new_storage);
 }
 
 char	*ft_free(char **str)
 {
 	free(*str);
-	*str = NULL;
-	return (NULL);
+		*str = NULL;
+		return (NULL);
 }
 
 char	*ft_read_lines(int fd, char *storage)
@@ -77,6 +98,6 @@ char	*get_next_line(int fd)
 	line = new_line(storage);
 	if (!line)
 		return (ft_free(&storage));
-	storage = clean
-
+	storage = ft_clean_storage(storage);
+	return(line);
 }

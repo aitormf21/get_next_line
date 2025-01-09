@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aditional_functions.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aitor <aitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:53:56 by aitor             #+#    #+#             */
-/*   Updated: 2025/01/08 13:23:28 by aitor            ###   ########.fr       */
+/*   Updated: 2025/01/09 14:00:15 by aitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
-	res = ft_calloc(sizeof(char ), (s1len + s2len + 1));
+	res = malloc(sizeof(char ) * (s1len + s2len + 1));
 	if (!res)
 		return (NULL);
 	i = 0;
@@ -57,19 +57,38 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	size_t	i;
 	char	*res;
 	size_t	slen;
 
+	i = 0;
 	slen = ft_strlen(s);
 	if (!s)
 		return (NULL);
 	if (start >= slen)
-		return (ft_strdup(""));
+	{
+		res = malloc(sizeof(char) * 1);
+		if (!res)
+			return (NULL);
+		res[0] = '\0';
+		return (res);
+	}
 	if (slen - start < len)
 		len = slen - start;
-	res = ft_calloc(sizeof(char ), len + 1);
+	res = malloc(sizeof(char ) * (len + 1));
 	if (!res)
 		return (NULL);
-	ft_strlcpy(res, s + start, len + 1);
+	while (start < slen && i < len && s[start])
+		res[i++] =s[start++];
+	res[i] ='\0';
 	return (res);
+}
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

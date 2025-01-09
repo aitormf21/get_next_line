@@ -6,7 +6,7 @@
 /*   By: aitor <aitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:40:24 by aitor             #+#    #+#             */
-/*   Updated: 2025/01/08 13:24:55 by aitor            ###   ########.fr       */
+/*   Updated: 2025/01/09 13:44:35 by aitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include<limits.h>
 
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
-size_t	ft_strlen(char *s);
+size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(char *s1);
 char	*ft_strchr(const char *s, int c);
