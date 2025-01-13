@@ -6,7 +6,7 @@
 /*   By: aitor <aitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:53:56 by aitor             #+#    #+#             */
-/*   Updated: 2025/01/13 10:41:49 by aitor            ###   ########.fr       */
+/*   Updated: 2025/01/13 18:24:29 by aitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*res;
 	int		s1len;
@@ -63,27 +63,30 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*res;
-
-	res = malloc(nmemb * size);
-	if (!res)
-		return (NULL);
-	ft_bzero(res, nmemb * size);
-	return (res);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
 	char	*str;
 	size_t	i;
 
-	str = (char *)s;
+	if (nmemb == 0 || size == 0)
+		return (NULL);
+	res = malloc(nmemb * size);
+	if (!res)
+		return (NULL);
+	str = (char *)res;
 	i = 0;
-	while (i < n)
+	while (i < nmemb * size)
 	{
 		str[i] = '\0';
 		i++;
 	}
+	return (res);
+}
+
+void	*ft_free_and_null(void *ptr)
+{
+	free(ptr);
+	return (NULL);
 }
